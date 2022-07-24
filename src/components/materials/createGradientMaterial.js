@@ -1,7 +1,7 @@
-import { ShaderMaterial, DoubleSide, Color } from "three";
+import { ShaderMaterial, DoubleSide, Color } from 'three'
 
 export default function createGradientMaterial(palette) {
-  const { col1, col2, col3, col4 } = palette;
+  const { col1, col2, col3, col4 } = palette
   const material = new ShaderMaterial({
     side: DoubleSide,
     uniforms: {
@@ -64,7 +64,7 @@ export default function createGradientMaterial(palette) {
           gl_FragColor = vec4(finalColor, 1.0);
         }
           `,
-  });
+  })
 
-  return material;
+  return material
 }
