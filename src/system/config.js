@@ -20,8 +20,8 @@ const palettes = [
 export default function config() {
   const R = new Random()
   const palette = R.random_choice(palettes)
-  const shadows = R.random_int(3, 9)
-  const teapotSize = R.random_int(2, 3)
+  const shadows = R.random_int(6, 12)
+  const teapotSize = R.random_int(3, 4)
   const blendsModes = []
   for (let i = 0; i < shadows; i++) {
     blendsModes.push(R.random_choice(modes))
