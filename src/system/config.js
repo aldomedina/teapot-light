@@ -8,7 +8,7 @@ export default function config() {
   const palette = R.random_choice(palettes)
   console.log(palette)
   const shadows = R.random_int(2, 6) * 2
-  const teapotSize = R.random_int(3, 4)
+  const teapotSize = R.random_num(3.5, 4)
   const withDifference = R.random_bool(0.5)
   const blendsModes = []
   const modifierX = R.random_bool(0.5)
