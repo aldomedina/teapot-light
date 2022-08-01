@@ -36,12 +36,12 @@ export default function config() {
   const config = {
     palette: {
       bg: palette[0],
-      teapot: palette[1],
-      teapot_shadow: palette[2],
-      col1: palette[3],
-      col2: palette[4],
-      col3: palette[5],
-      col4: palette[6],
+      col1: palette[1],
+      col2: palette[2],
+      col3: palette[3],
+      col4: palette[4],
+      teapot: palette[5],
+      teapot_shadow: palette[6],
     },
     modifier: {
       magnitude: 10,
