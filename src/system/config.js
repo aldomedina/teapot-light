@@ -1,33 +1,39 @@
 import { Random } from '../Random'
-
-const modes = [
-  'multiply',
-  'darken',
-  'lighten',
-  'luminosity',
-  'saturation',
-  'overlay',
-  'screen',
-]
-
-const palettes = [
-  [0xf7def5, 0x1f9de3, 0x4719e3, 0xdc3eed, 0xb140f7, 0x5040f7, 0x5040f7],
-  [0xc7c7ac, 0xf69b9a, 0xfe1b30, 0xef4665, 0xf69b9a, 0xfbcead, 0xfbcead],
-  [0xdcdcdb, 0xff1aab, 0x16cabe, 0xd2131a, 0xff1aab, 0xebd234, 0xebd234],
-  [0xdcdcdb, 0xff682c, 0x807a73, 0xff682c, 0xc1b9b2, 0xebd234, 0xebd234],
-]
+import blendingModes from './blendingModes'
+import palettes from './palettes'
 
 export default function config() {
   const R = new Random()
+  const { darkModes, lightModes, neutralModes, changeModes } = blendingModes
   const palette = R.random_choice(palettes)
-  const shadows = R.random_int(6, 12)
+  console.log(palette)
+  const shadows = R.random_int(2, 6) * 2
   const teapotSize = R.random_int(3, 4)
+  const withDifference = R.random_bool(0.5)
   const blendsModes = []
+  const modifierX = R.random_bool(0.5)
+  const modifierY = R.random_bool(0.5)
+  const modifierZ = !modifierX && !modifierY ? true : R.random_bool(0.5)
+
   for (let i = 0; i < shadows; i++) {
-    blendsModes.push(R.random_choice(modes))
+    if (withDifference) {
+      if (i % 3 == 0) {
+        blendsModes.push(R.random_choice(neutralModes))
+      } else if (i % 2 == 0) {
+        blendsModes.push(R.random_choice(darkModes))
+      } else {
+        blendsModes.push(R.random_choice(lightModes))
+      }
+    } else {
+      if (i % 2 == 0) {
+        blendsModes.push(R.random_choice(darkModes))
+      } else {
+        blendsModes.push(R.random_choice(lightModes))
+      }
+    }
   }
+
   const config = {
-    withBox: R.random_bool(0.75),
     palette: {
       bg: palette[0],
       teapot: palette[1],
@@ -64,14 +70,14 @@ export default function config() {
     camera_config: {
       x: 0,
       y: 0,
-      z: 10,
+      z: 9,
     },
     shadows: {
       q: shadows,
-      modifier: R.random_int(10, shadows * 25),
-      x: R.random_bool(0.5),
-      y: R.random_bool(0.5),
-      z: R.random_bool(0.5),
+      modifier: R.random_int(9, shadows * 10),
+      x: modifierX,
+      y: modifierY,
+      z: modifierZ,
       blendsModes,
     },
   }

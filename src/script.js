@@ -17,26 +17,50 @@ const {
   teapot_config,
   lights_config,
   camera_config,
-  withBox,
   shadows,
 } = config()
 
 const canvas = document.querySelector('canvas.webgl')
 const teapotDOM = document.querySelector('div.teapots')
+
+const sideSize = Math.min(window.innerHeight, window.innerWidth)
 const sizes = {
-  width: window.innerHeight,
-  height: window.innerHeight,
+  width: sideSize,
+  height: sideSize,
 }
+teapotDOM.style.height = `${sideSize}px`
+teapotDOM.style.width = `${sideSize}px`
+console.log(document.styleSheets)
+document.styleSheets[0].insertRule(
+  `
+  .teapots {
+    position: relative;
+    display: block;
+    margin: 0 auto;
+  }
+  `,
+  0
+)
+document.styleSheets[0].insertRule(
+  `
+  .img {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+  `,
+  0
+)
 
 let shadowModifier = 0
 for (let i = 0; i < shadows.q; i++) {
   const scene = new THREE.Scene()
-  const camera = new THREE.PerspectiveCamera(
-    75,
-    sizes.width / sizes.height,
-    0.1,
-    1000
-  )
+  const camera = new THREE.PerspectiveCamera(75, sideSize / sideSize, 0.1, 1000)
   camera.position.z = camera_config.z
 
   /**
@@ -45,7 +69,7 @@ for (let i = 0; i < shadows.q; i++) {
   const renderer = new THREE.WebGLRenderer({
     canvas: canvas,
   })
-  renderer.setSize(sizes.width, sizes.height)
+  renderer.setSize(sideSize, sideSize)
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
   renderer.physicallyCorrectLights = true
   renderer.shadowMap.enabled = true
@@ -63,11 +87,9 @@ for (let i = 0; i < shadows.q; i++) {
 
   scene.add(camera, teapot, bgSphere, spotlight)
 
-  if (withBox) {
-    const box = createBox(palette, modifier)
-    box.translateZ(teapot_config.depth)
-    scene.add(box)
-  }
+  const box = createBox(palette, modifier)
+  box.translateZ(teapot_config.depth)
+  scene.add(box)
 
   renderer.render(scene, camera)
 
@@ -80,16 +102,23 @@ for (let i = 0; i < shadows.q; i++) {
   teapotDOM.appendChild(domIMG)
 }
 
-// window.addEventListener('resize', () => {
-//   // Update sizes
-//   sizes.width = window.innerHeight
-//   sizes.height = window.innerHeight
+canvas.remove()
 
-//   // Update camera
-//   camera.aspect = sizes.width / sizes.height
-//   camera.updateProjectionMatrix()
+window.addEventListener('resize', () => {
+  // // Update sizes
+  // sizes.width = window.innerHeight
+  // sizes.height = window.innerHeight
 
-//   // Update renderer
-//   renderer.setSize(sizes.width, sizes.height)
-//   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-// })
+  // // Update camera
+  // camera.aspect = sizes.width / sizes.height
+  // camera.updateProjectionMatrix()
+
+  // // Update renderer
+  // renderer.setSize(sizes.width, sizes.height)
+  // renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+
+  const sideSize = Math.min(window.innerHeight, window.innerWidth)
+
+  teapotDOM.style.height = `${sideSize}px`
+  teapotDOM.style.width = `${sideSize}px`
+})

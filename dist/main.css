@@ -1,66 +1,16 @@
-html {
+html,
+body {
   height: 100%;
 }
 body {
-  min-height: 100%;
   margin: 0;
   padding: 0;
-}
-canvas {
-  padding: 0;
-  margin: auto;
-  display: block;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
 }
 
 html,
 body {
   margin: 0;
   padding: 0;
-}
-
-.scanline {
-  height: 100%;
-  width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 2;
-  opacity: 0.2;
-  background: url("data:image/svg+xml;utf8,<svg viewBox=\"0 0 3 3\" xmlns=\"http://www.w3.org/2000/svg\"><rect style=\"fill:rgb%280,0,0%29\" width=\"1\" height=\"1\" /></svg>")
-      0 0 /3px 3px,
-    url("data:image/svg+xml;utf8,<svg viewBox=\"0 0 3 3\" xmlns=\"http://www.w3.org/2000/svg\"><rect style=\"fill:rgb%280,0,0%29\"  width=\"1\" height=\"1\" /></svg>")
-      1px 1px/3px 3px,
-    url("data:image/svg+xml;utf8,<svg viewBox=\"0 0 3 3\" xmlns=\"http://www.w3.org/2000/svg\"><rect style=\"fill:rgb%280,0,0%29\"  width=\"1\" height=\"1\" /></svg>")
-      2px 2px/3px 3px;
-  /* url(https://i.picsum.photos/id/102/800/800.jpg) center/cover; */
-}
-.teapots {
-  position: fixed;
-  z-index: 5;
-  display: flex;
-  inset: 0;
-}
-.img {
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.img-1 {
-}
-.img-2 {
-  mix-blend-mode: darken;
-}
-.img-3 {
-  mix-blend-mode: overlay;
 }
 
 
