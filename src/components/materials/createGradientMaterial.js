@@ -20,16 +20,16 @@ export default function createGradientMaterial(palette) {
         },
       },
       firstColor: {
-        value: new Color(col4),
+        value: new Color(col1),
       },
       secondColor: {
-        value: new Color(col3),
-      },
-      thirdColor: {
         value: new Color(col2),
       },
+      thirdColor: {
+        value: new Color(col3),
+      },
       fourthColor: {
-        value: new Color(col1),
+        value: new Color(col4),
       },
       lights: true, // add this,
       fog: true,

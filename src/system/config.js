@@ -6,8 +6,8 @@ export default function config() {
   const R = new Random()
   const { darkModes, lightModes, neutralModes, changeModes } = blendingModes
   const palette = R.random_choice(palettes)
-  console.log(palette)
-  const shadows = R.random_int(2, 6) * 2
+  const singleTeapot = R.random_bool(0.01)
+  const shadows = singleTeapot ? 1 : R.random_int(2, 6) * 2
   const teapotSize = R.random_num(3.5, 4)
   const withDifference = R.random_bool(0.5)
   const blendsModes = []
@@ -70,7 +70,7 @@ export default function config() {
     camera_config: {
       x: 0,
       y: 0,
-      z: 9,
+      z: 9.6,
     },
     shadows: {
       q: shadows,
