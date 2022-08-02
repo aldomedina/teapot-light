@@ -11,9 +11,11 @@ export default function config() {
   const teapotSize = R.random_num(3.5, 4)
   const withDifference = R.random_bool(0.5)
   const blendsModes = []
-  const modifierX = R.random_bool(0.5)
-  const modifierY = R.random_bool(0.5)
-  const modifierZ = !modifierX && !modifierY ? true : R.random_bool(0.5)
+
+  let axis = ['x', 'y', 'z']
+  const axis1 = R.random_choice(axis)
+  axis = axis.filter((el) => el !== axis1)
+  const axis2 = R.random_choice(axis)
 
   for (let i = 0; i < shadows; i++) {
     if (withDifference) {
@@ -75,9 +77,9 @@ export default function config() {
     shadows: {
       q: shadows,
       modifier: R.random_int(9, shadows * 10),
-      x: modifierX,
-      y: modifierY,
-      z: modifierZ,
+      secondaryModifier: R.random_int(1, 3),
+      mainRotationAxis: axis1,
+      secondaryRotationAxis: axis2,
       blendsModes,
     },
   }

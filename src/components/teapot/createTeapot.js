@@ -2,13 +2,19 @@ import { Group, Mesh, MeshBasicMaterial, MathUtils, Color } from 'three'
 import createLambertFilmGrainMaterial from '../materials/createLambertFilmGrainMaterial'
 import createTeapotGeometry from './createTeapotGeometry'
 
-export default function createTeapot(config, palette, shadows, modifier) {
+export default function createTeapot(
+  config,
+  palette,
+  shadows,
+  modifier,
+  secondaryModifier
+) {
   const {
     size,
     rotation: { x, y, z },
   } = config
 
-  const { x: sx, y: sy, z: sz } = shadows
+  const { mainRotationAxis, secondaryRotationAxis } = shadows
 
   const geometry = createTeapotGeometry(size)
   const material = createLambertFilmGrainMaterial(palette, true)
@@ -38,9 +44,17 @@ export default function createTeapot(config, palette, shadows, modifier) {
   teapots.scale.y = size
   teapots.scale.z = size
   if (modifier) {
-    if (sx) teapots.rotateX(MathUtils.degToRad(modifier))
-    if (sy) teapots.rotateY(MathUtils.degToRad(modifier))
-    if (sz) teapots.rotateZ(MathUtils.degToRad(modifier))
+    if (mainRotationAxis === 'x') teapots.rotateX(MathUtils.degToRad(modifier))
+    if (mainRotationAxis === 'y') teapots.rotateY(MathUtils.degToRad(modifier))
+    if (mainRotationAxis === 'z') teapots.rotateZ(MathUtils.degToRad(modifier))
+  }
+  if (secondaryModifier) {
+    if (secondaryRotationAxis === 'x')
+      teapots.rotateX(MathUtils.degToRad(modifier))
+    if (secondaryRotationAxis === 'y')
+      teapots.rotateY(MathUtils.degToRad(modifier))
+    if (secondaryRotationAxis === 'z')
+      teapots.rotateZ(MathUtils.degToRad(modifier))
   }
 
   return teapots

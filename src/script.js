@@ -58,6 +58,7 @@ document.styleSheets[0].insertRule(
 )
 
 let shadowModifier = 0
+let shadowSecondaryModifier = 0
 for (let i = 0; i < shadows.q; i++) {
   const scene = new THREE.Scene()
   const camera = new THREE.PerspectiveCamera(75, sideSize / sideSize, 0.1, 1000)
@@ -78,8 +79,15 @@ for (let i = 0; i < shadows.q; i++) {
   renderer.gammaOutput = true
   renderer.gammaFactor = 2.2
 
-  const teapot = createTeapot(teapot_config, palette, shadows, shadowModifier)
+  const teapot = createTeapot(
+    teapot_config,
+    palette,
+    shadows,
+    shadowModifier,
+    shadowSecondaryModifier
+  )
   shadowModifier += shadows.modifier
+  shadowSecondaryModifier += shadows.secondaryModifier
   const bgSphere = createBgSphere(palette)
   const spotlight = createLights(lights_config)
   spotlight.target = teapot
