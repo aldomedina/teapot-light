@@ -50,11 +50,11 @@ export default function createTeapot(
   }
   if (secondaryModifier) {
     if (secondaryRotationAxis === 'x')
-      teapots.rotateX(MathUtils.degToRad(modifier))
+      teapots.rotateX(MathUtils.degToRad(secondaryModifier))
     if (secondaryRotationAxis === 'y')
-      teapots.rotateY(MathUtils.degToRad(modifier))
+      teapots.rotateY(MathUtils.degToRad(secondaryModifier))
     if (secondaryRotationAxis === 'z')
-      teapots.rotateZ(MathUtils.degToRad(modifier))
+      teapots.rotateZ(MathUtils.degToRad(secondaryModifier))
   }
 
   return teapots
