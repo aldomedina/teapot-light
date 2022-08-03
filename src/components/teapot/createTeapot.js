@@ -43,19 +43,17 @@ export default function createTeapot(
   teapots.scale.x = size
   teapots.scale.y = size
   teapots.scale.z = size
-  if (modifier) {
-    if (mainRotationAxis === 'x') teapots.rotateX(MathUtils.degToRad(modifier))
-    if (mainRotationAxis === 'y') teapots.rotateY(MathUtils.degToRad(modifier))
-    if (mainRotationAxis === 'z') teapots.rotateZ(MathUtils.degToRad(modifier))
-  }
-  if (secondaryModifier) {
-    if (secondaryRotationAxis === 'x')
-      teapots.rotateX(MathUtils.degToRad(secondaryModifier))
-    if (secondaryRotationAxis === 'y')
-      teapots.rotateY(MathUtils.degToRad(secondaryModifier))
-    if (secondaryRotationAxis === 'z')
-      teapots.rotateZ(MathUtils.degToRad(secondaryModifier))
-  }
+
+  if (mainRotationAxis === 'x') teapots.rotateX(MathUtils.degToRad(modifier))
+  if (mainRotationAxis === 'y') teapots.rotateY(MathUtils.degToRad(modifier))
+  if (mainRotationAxis === 'z') teapots.rotateZ(MathUtils.degToRad(modifier))
+
+  if (secondaryRotationAxis === 'x')
+    teapots.rotateX(MathUtils.degToRad(modifier / 2))
+  if (secondaryRotationAxis === 'y')
+    teapots.rotateY(MathUtils.degToRad(modifier / 2))
+  if (secondaryRotationAxis === 'z')
+    teapots.rotateZ(MathUtils.degToRad(modifier / 2))
 
   return teapots
 }

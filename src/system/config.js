@@ -19,13 +19,8 @@ export default function config() {
   axis = axis.filter((el) => el !== axis1)
   const axis2 = R.random_choice(axis)
 
-  const maxX = 70
-  const maxZ = 40
-  const initX = R.random_num(-40, 20)
-  const initZ = R.random_num(-60, 20)
-
-  const rotationModifierX = R.random_num(1, (maxX - initX) / shadows)
-  const rotationModifierZ = R.random_num(1, (maxZ - initZ) / shadows)
+  const initX = R.random_num(-60, -20)
+  const initZ = R.random_num(-80, -40)
 
   for (let i = 0; i < shadows; i++) {
     if (withDifference) {
@@ -56,15 +51,15 @@ export default function config() {
       teapot_shadow: palette[6],
     },
     modifier: {
-      bgPlano,
       magnitude: R.random_num(-2, 2),
       left: R.random_bool(0.5),
       right: R.random_bool(0.5),
       top: R.random_bool(0.5),
       bottom: R.random_bool(0.5),
+      bgPlano,
+      planoPosition: R.random_choice(planoPositions),
       x: R.random_bool(0.5),
       y: R.random_bool(0.5),
-      planoPosition: R.random_choice(planoPositions),
     },
     teapot_config: {
       rotation: {
@@ -90,12 +85,9 @@ export default function config() {
     },
     shadows: {
       q: shadows,
-      modifier: R.random_int(9, shadows * 10),
+      modifier: R.random_int(25, 35),
       mainRotationAxis: axis1,
       secondaryRotationAxis: axis2,
-      rotationModifierX,
-      y: R.random_int(0, 360),
-      rotationModifierZ,
       blendsModes,
     },
   }
