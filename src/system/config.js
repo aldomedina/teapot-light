@@ -19,9 +19,6 @@ export default function config() {
   axis = axis.filter((el) => el !== axis1)
   const axis2 = R.random_choice(axis)
 
-  const initX = R.random_num(-60, -20)
-  const initZ = R.random_num(-80, -40)
-
   for (let i = 0; i < shadows; i++) {
     if (withDifference) {
       if (i % 3 == 0) {
@@ -63,9 +60,9 @@ export default function config() {
     },
     teapot_config: {
       rotation: {
-        x: initX,
-        y: R.random_int(0, 360),
-        z: initZ,
+        x: R.random_num(-90, 0),
+        y: R.random_num(-90, 0),
+        z: R.random_num(-90, 0),
       },
       size: teapotSize,
       depth: -8,
