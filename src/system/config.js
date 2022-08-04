@@ -7,7 +7,7 @@ export default function config() {
   const { darkModes, lightModes, neutralModes, changeModes } = blendingModes
   const palette = R.random_choice(palettes)
   const singleTeapot = R.random_bool(0.01)
-  const shadows = singleTeapot ? 1 : R.random_int(2, 6) * 2
+  const shadows = singleTeapot ? 1 : R.random_int(2, 6)
   const teapotSize = R.random_num(3.5, 4)
   const withDifference = R.random_bool(0.5)
   const bgPlano = R.random_bool(0.2)
@@ -69,7 +69,7 @@ export default function config() {
     },
     lights_config: {
       position: {
-        x: R.random_int(-10, -10),
+        x: R.random_int(-10, 10),
         y: 10,
         z: 15,
       },
