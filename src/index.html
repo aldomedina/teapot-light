@@ -7,8 +7,16 @@
   </head>
   <body>
     <canvas class="webgl"></canvas>
-
     <div class="teapots"></div>
+    <form class="select-form">
+      <select name="compositions" id="compositions">
+        <option value="overlay-single">overlay single</option>
+        <option value="overlay-multiple">overlay multiple</option>
+        <option value="grainy-box">grainy box</option>
+      </select>
+      <br /><br />
+      <input type="submit" value="create" />
+    </form>
     <script>
       function genTokenData(projectNum) {
         let data = {}

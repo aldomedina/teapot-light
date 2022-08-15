@@ -6,8 +6,8 @@ export default function createTeapot(
   config,
   palette,
   shadows,
-  modifier,
-  secondaryModifier
+  modifier = 0,
+  compo
 ) {
   const {
     size,
@@ -23,8 +23,9 @@ export default function createTeapot(
   outsideTeapot.receiveShadow = true
 
   const insideGeometry = geometry.clone()
+
   const insideMaterial = new MeshBasicMaterial({
-    color: palette.teapot_shadow,
+    color: compo === 'grainy-box' ? palette.bg : palette.teapot_shadow,
   })
   insideGeometry.scale(0.999, 0.999, 0.999)
   const insideTeapot = new Mesh(insideGeometry, insideMaterial)
