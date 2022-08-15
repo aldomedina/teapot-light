@@ -12,7 +12,7 @@ export default function createBox(palette, modifier, compo = 'gradient') {
   const geometry = createBoxGeometry(modifier)
   const material =
     compo === 'grainy-box'
-      ? createLambertFilmGrainMaterial({ teapot: palette.bg }, true)
+      ? createLambertFilmGrainMaterial({ teapot: palette.teapot }, true)
       : createGradientMaterial(palette)
   const box = new Mesh(geometry, material)
   return box

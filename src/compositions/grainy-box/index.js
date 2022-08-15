@@ -41,7 +41,7 @@ export default function createGrainyBox(config) {
   const renderer = createRender(canvas, sideSize)
   const teapot = createTeapot(
     teapot_config,
-    { ...palette, teapot: palette.bg },
+    { ...palette, teapot: palette.teapot },
     shadows,
     0,
     'grainy-box'
