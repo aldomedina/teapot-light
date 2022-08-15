@@ -37,6 +37,11 @@ export default function config() {
     }
   }
 
+  const leftBox = R.random_bool(0.5)
+  const rightBox = leftBox ? false : R.random_bool(0.5)
+  const topBox = R.random_bool(0.5)
+  const bottomBox = topBox ? false : R.random_bool(0.5)
+
   const config = {
     palette: {
       bg: palette[0],
@@ -48,11 +53,11 @@ export default function config() {
       teapot_shadow: palette[6],
     },
     modifier: {
-      magnitude: R.random_num(-2, 2),
-      left: R.random_bool(0.5),
-      right: R.random_bool(0.5),
-      top: R.random_bool(0.5),
-      bottom: R.random_bool(0.5),
+      magnitude: R.random_num(-10, 10),
+      left: leftBox,
+      right: rightBox,
+      top: topBox,
+      bottom: bottomBox,
       bgPlano,
       planoPosition: R.random_choice(planoPositions),
       x: R.random_bool(0.5),

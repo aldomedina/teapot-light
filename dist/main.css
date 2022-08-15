@@ -42,5 +42,21 @@ body {
   /* url(https://i.picsum.photos/id/102/800/800.jpg) center/cover; */
 }
 
+.select-form {
+  background: white;
+  padding: 1rem;
+  position: fixed;
+  z-index: 5;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  gap: 0.5rem;
+  font-size: 0.5rem;
+  opacity: 0.3;
+}
+.select-form:hover {
+  opacity: 1;
+}
+
 
 /*# sourceMappingURL=main.css.map*/

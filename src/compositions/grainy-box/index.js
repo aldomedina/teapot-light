@@ -49,7 +49,7 @@ export default function createGrainyBox(config) {
   const bgSphere = createBgSphere(palette)
   const spotlight = createLights(lights_config, 'grainy-box')
   const box = createBox(palette, modifier, 'grainy-box')
-  teapot.position.z = 5
+  teapot.position.z = 10
   spotlight.target = teapot
   camera.lookAt(teapot.position)
 

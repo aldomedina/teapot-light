@@ -15,8 +15,8 @@ export default function createTeapot(
   } = config
 
   const { mainRotationAxis, secondaryRotationAxis } = shadows
-
-  const geometry = createTeapotGeometry(size)
+  const teapotSize = compo === 'grainy-box' ? 2 : size
+  const geometry = createTeapotGeometry(teapotSize)
   const material = createLambertFilmGrainMaterial(palette, true)
   const outsideTeapot = new Mesh(geometry, material)
   outsideTeapot.castShadow = true
@@ -41,9 +41,9 @@ export default function createTeapot(
   teapots.rotateY(MathUtils.degToRad(y))
   teapots.rotateZ(MathUtils.degToRad(z))
 
-  teapots.scale.x = size
-  teapots.scale.y = size
-  teapots.scale.z = size
+  teapots.scale.x = teapotSize
+  teapots.scale.y = teapotSize
+  teapots.scale.z = teapotSize
 
   if (mainRotationAxis === 'x') teapots.rotateX(MathUtils.degToRad(modifier))
   if (mainRotationAxis === 'y') teapots.rotateY(MathUtils.degToRad(modifier))
