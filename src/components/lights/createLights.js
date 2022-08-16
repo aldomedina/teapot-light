@@ -6,7 +6,6 @@ export default function createLights(config, compo) {
     intensity,
   } = config
 
-  console.log(config)
   const mainLight = new SpotLight(
     0xffffff,
     compo === 'grainy-box' ? 10 : intensity
@@ -21,12 +20,3 @@ export default function createLights(config, compo) {
   mainLight.position.set(x, y, z)
   return mainLight
 }
-
-// {
-//   "position": {
-//       "x": 0,
-//       "y": 10,
-//       "z": 15
-//   },
-//   "intensity": 10
-// }

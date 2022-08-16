@@ -1,12 +1,25 @@
 import { Random } from '../Random'
 import blendingModes from './blendingModes'
 import palettes from './palettes'
+function createCSV(arr) {
+  var csv = ''
+  arr.forEach(function (row) {
+    csv += row.join(',')
+    csv += '\n'
+  })
 
+  var hiddenElement = document.createElement('a')
+  hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv)
+  hiddenElement.target = '_blank'
+  hiddenElement.download = 'properties.csv'
+  hiddenElement.click()
+}
 export default function config() {
   const R = new Random()
   const { darkModes, lightModes, neutralModes, changeModes } = blendingModes
   const palette = R.random_choice(palettes)
-
+  console.log(palettes.indexOf(palette) + 1)
+  // createCSV(palettes.map((colors) => colors.map((color) => color.toString(16))))
   const shadows = R.random_int(2, 6)
   const teapotSize = R.random_num(3.5, 4)
   const withDifference = R.random_bool(0.5)
