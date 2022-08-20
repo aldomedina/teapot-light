@@ -49,7 +49,7 @@ export default function createInstanced(config) {
 
   let shadowModifier = 0
   let shadowSecondaryModifier = 0
-  for (let i = 0; i < shadows.q; i++) {
+  for (let i = 0; i < 1; i++) {
     const scene = new THREE.Scene()
     const camera = new THREE.PerspectiveCamera(
       75,
@@ -65,10 +65,10 @@ export default function createInstanced(config) {
     const bgSphere = createBgSphere(palette)
     const spotlight = createLights(lights_config, 'grainy-box')
     const teapots = createInstancedTeapot(teapot_config, palette)
-    const box = createBox(palette, modifier)
+    // const box = createBox(palette, modifier)
     shadowModifier += shadows.modifier
     shadowSecondaryModifier += shadows.secondaryModifier
-    scene.add(box, camera, teapots, bgSphere, spotlight)
+    scene.add(camera, teapots, bgSphere, spotlight)
     renderer.render(scene, camera)
 
     const url = createScreenShot(renderer, scene, camera)

@@ -1,12 +1,12 @@
-import { TeapotGeometry } from "three/examples/jsm/geometries/TeapotGeometry.js";
+import { TeapotGeometry } from 'three/examples/jsm/geometries/TeapotGeometry.js'
 
 export default function createTeapotGeometry() {
-  const segments = 100;
-  const bottom = true;
-  const lib = true;
-  const body = true;
-  const fitLid = true;
-  const blinn = true;
+  const segments = 100
+  const bottom = true
+  const lib = true
+  const body = true
+  const fitLid = true
+  const blinn = true
   const geometry = new TeapotGeometry(
     1,
     segments,
@@ -15,7 +15,7 @@ export default function createTeapotGeometry() {
     body,
     fitLid,
     blinn
-  );
+  )
 
-  return geometry;
+  return geometry
 }

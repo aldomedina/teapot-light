@@ -11,7 +11,7 @@ import {
 import createLambertFilmGrainMaterial from '../materials/createLambertFilmGrainMaterial'
 import createTeapotGeometry from './createTeapotGeometry'
 
-const count = 50
+const count = 300
 export default function createInstancedTeapot(config, palette) {
   const {
     size,
@@ -33,9 +33,9 @@ export default function createInstancedTeapot(config, palette) {
     const rotation = new Euler()
     const quaternion = new Quaternion()
     const scale = new Vector3()
-    position.x = Math.random() * 14 - 7
-    position.y = Math.random() * 14 - 7
-    position.z = Math.random() * 14 - 7
+    position.x = Math.random() * 16 - 8
+    position.y = Math.random() * 16 - 8
+    position.z = Math.random() * 16 - 8
 
     rotation.x = Math.random() * 2 * Math.PI
     rotation.y = Math.random() * 2 * Math.PI

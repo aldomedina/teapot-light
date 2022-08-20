@@ -1,19 +1,9 @@
 import { Random } from '../Random'
 import blendingModes from './blendingModes'
 import palettes from './palettes'
-function createCSV(arr) {
-  var csv = ''
-  arr.forEach(function (row) {
-    csv += row.join(',')
-    csv += '\n'
-  })
 
-  var hiddenElement = document.createElement('a')
-  hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv)
-  hiddenElement.target = '_blank'
-  hiddenElement.download = 'properties.csv'
-  hiddenElement.click()
-}
+const matrix_sides = [2, 3, 4]
+
 export default function config() {
   const R = new Random()
   const { darkModes, lightModes, neutralModes, changeModes } = blendingModes
@@ -55,6 +45,20 @@ export default function config() {
   const topBox = R.random_bool(0.5)
   const bottomBox = topBox ? false : true
 
+  const matrixside = R.random_choice(matrix_sides)
+  let matrixModifiers = new Array(matrixside)
+  for (let x = 0; x < matrixside; x++) {
+    for (let y = 0; y < matrixside; y++) {
+      const i = x + y
+      const rotation = R.random_int(-2, 2)
+      const tx = R.random_num(-0.5, 0.5)
+      const ty = R.random_num(-0.5, 0.5)
+      matrixModifiers[
+        i
+      ] = `rotate(${rotation}deg) translateX(${tx}%) translateY(${ty}%)`
+    }
+  }
+
   const config = {
     palette: {
       bg: palette[0],
@@ -78,9 +82,9 @@ export default function config() {
     },
     teapot_config: {
       rotation: {
-        x: R.random_num(-90, 0),
-        y: R.random_num(-90, 0),
-        z: R.random_num(-90, 0),
+        x: R.random_num(10, 30),
+        y: R.random_num(-180, -10),
+        z: R.random_num(-10, 20),
       },
       size: teapotSize,
       depth: -8,
@@ -100,10 +104,15 @@ export default function config() {
     },
     shadows: {
       q: shadows,
-      modifier: R.random_int(25, 35),
-      mainRotationAxis: axis1,
-      secondaryRotationAxis: axis2,
+      modifier: R.random_choice([R.random_int(-35, -15), R.random_int(15, 35)]),
+      mainRotationAxis: 'y',
+      secondaryRotationAxis: R.random_choice(['x', 'z']),
       blendsModes,
+    },
+    matrix: {
+      matrixside,
+      matrixModifiers,
+      boxMaterial: R.random_choice(['grainy-box', 'matrix']),
     },
   }
   console.log('config', config)
