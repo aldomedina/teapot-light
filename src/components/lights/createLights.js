@@ -6,10 +6,7 @@ export default function createLights(config, compo) {
     intensity,
   } = config
 
-  const mainLight = new SpotLight(
-    0xffffff,
-    compo === 'grainy-box' ? 10 : intensity
-  )
+  const mainLight = new SpotLight(0xffffff, intensity)
   mainLight.castShadow = true
   mainLight.shadowCameraVisible = true
   mainLight.shadow.mapSize.width = 1024

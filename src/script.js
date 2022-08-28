@@ -36,6 +36,8 @@ form.addEventListener('submit', (event) => {
     form.removeChild(child)
     child = form.lastElementChild
   }
+  form.remove()
+  console.log('done')
 })
 
 /**

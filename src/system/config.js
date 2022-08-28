@@ -2,8 +2,6 @@ import { Random } from '../Random'
 import blendingModes from './blendingModes'
 import palettes from './palettes'
 
-const matrix_sides = [2, 3, 4]
-
 export default function config() {
   const R = new Random()
   const { darkModes, lightModes, neutralModes, changeModes } = blendingModes
@@ -20,7 +18,6 @@ export default function config() {
   let axis = ['x', 'y', 'z']
   const axis1 = R.random_choice(axis)
   axis = axis.filter((el) => el !== axis1)
-  const axis2 = R.random_choice(axis)
 
   for (let i = 0; i < shadows; i++) {
     if (withDifference) {
@@ -45,17 +42,16 @@ export default function config() {
   const topBox = R.random_bool(0.5)
   const bottomBox = topBox ? false : true
 
-  const matrixside = R.random_choice(matrix_sides)
+  const matrixside = R.random_choice([2, 3])
   let matrixModifiers = new Array(matrixside)
+  let rowModifiers = new Array(matrixside)
   for (let x = 0; x < matrixside; x++) {
+    const withTranslation = R.random_bool(0.5)
+    rowModifiers[x] = `rotate(${R.random_num(2, 0.3)}deg)`
     for (let y = 0; y < matrixside; y++) {
       const i = x + y
-      const rotation = R.random_int(-2, 2)
-      const tx = R.random_num(-0.5, 0.5)
-      const ty = R.random_num(-0.5, 0.5)
-      matrixModifiers[
-        i
-      ] = `rotate(${rotation}deg) translateX(${tx}%) translateY(${ty}%)`
+      const tx = withTranslation ? R.random_num(-20, 20) : R.random_num(5, 10)
+      matrixModifiers[i] = `translateX(${tx}%)`
     }
   }
 
@@ -112,6 +108,7 @@ export default function config() {
     matrix: {
       matrixside,
       matrixModifiers,
+      rowModifiers,
       boxMaterial: R.random_choice(['grainy-box', 'matrix']),
     },
   }

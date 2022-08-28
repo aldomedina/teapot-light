@@ -14,7 +14,7 @@ export default function createMatrix(config) {
     lights_config,
     camera_config,
     shadows,
-    matrix: { matrixside, matrixModifiers, boxMaterial },
+    matrix: { matrixside, matrixModifiers, boxMaterial, rowModifiers },
   } = config
   const canvas = document.querySelector('canvas.webgl')
   const teapotDOM = document.querySelector('div.teapots')
@@ -29,6 +29,7 @@ export default function createMatrix(config) {
     position: relative;
     display: block;
     margin: 0 auto;
+    overflow: hidden;
   }
   `,
     0
@@ -36,11 +37,22 @@ export default function createMatrix(config) {
 
   document.styleSheets[0].insertRule(
     `
-  .img {    
-    position: absolute;    
+  .teapotsRow {
+    display: flex;
+    height: ${100 / matrixside}%;   
+    transform-origin: bottom left;
+  }
+  `,
+    0
+  )
+
+  document.styleSheets[0].insertRule(
+    `
+  .img {        
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    flex:1;
   }
   `,
     0
@@ -71,22 +83,25 @@ export default function createMatrix(config) {
 
   const url = createScreenShot(renderer, scene, camera)
   const matrixSideSize = 100 / matrixside
-
+  const bgcol = palette.teapot.toString(16)
+  console.log(bgcol)
+  document.body.style.backgroundColor = `#${bgcol}`
   for (let x = 0; x < matrixside; x++) {
+    const rowDiv = document.createElement('div')
+    rowDiv.classList.add('teapotsRow')
+    rowDiv.style.transform = rowModifiers[x]
     for (let y = 0; y < matrixside; y++) {
       const i = x + y
       const domIMG = document.createElement('div')
       domIMG.classList.add('img')
       domIMG.style.backgroundImage = `url(${url})`
-      domIMG.style.top = `${matrixSideSize * x}%`
-      domIMG.style.left = `${matrixSideSize * y}%`
-      domIMG.style.height = `${matrixSideSize}%`
-      domIMG.style.width = `${matrixSideSize}%`
+
       domIMG.style.mixBlendMode = 'overlay'
       domIMG.style.transform = matrixModifiers[i]
 
-      teapotDOM.appendChild(domIMG)
+      rowDiv.appendChild(domIMG)
     }
+    teapotDOM.appendChild(rowDiv)
   }
 
   canvas.remove()
