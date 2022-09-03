@@ -1,7 +1,6 @@
 import { TeapotGeometry } from 'three/examples/jsm/geometries/TeapotGeometry.js'
 
-export default function createTeapotGeometry() {
-  const segments = 100
+export default function createTeapotGeometry(segments) {
   const bottom = true
   const lib = true
   const body = true

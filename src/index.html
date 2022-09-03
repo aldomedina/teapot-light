@@ -9,13 +9,122 @@
     <canvas class="webgl"></canvas>
     <div class="teapots"></div>
     <form class="select-form">
-      <select name="compositions" id="compositions">
-        <option value="matrix">matrix</option>
-        <option value="overlay-single">overlay single</option>
-        <option value="overlay-multiple">overlay multiple</option>
-        <option value="grainy-box">grainy box</option>
-        <!-- <option value="instanced">instanced</option> -->
-      </select>
+      <label class="label" id="compositions">COMPO</label>
+      <div class="input-wrapper">
+        <select name="compositions" id="compositions">
+          <option value="grainy-box">grainy box</option>
+          <option value="matrix">matrix</option>
+          <option value="overlay-single">overlay single</option>
+          <option value="overlay-multiple">overlay multiple</option>
+        </select>
+      </div>
+      <label class="label title">DISPLACEMENT</label>
+      <div class="input-wrapper">
+        <label class="label" id="speed">speed</label>
+        <input
+          type="range"
+          step="0.25"
+          min="0"
+          max="15"
+          value="0"
+          class="slider"
+          id="speed"
+          name="speed"
+          oninput="this.nextElementSibling.value = speed.value"
+        />
+        <output>0</output>
+      </div>
+      <div class="input-wrapper">
+        <label class="label" id="density">density</label>
+        <input
+          type="range"
+          step="0.25"
+          min="0"
+          max="15"
+          value="0"
+          class="slider"
+          id="density"
+          name="density"
+          oninput="this.nextElementSibling.value = density.value"
+        />
+        <output>0</output>
+      </div>
+      <div class="input-wrapper">
+        <label class="label" id="strenght">strenght</label>
+        <input
+          type="range"
+          step="0.25"
+          min="0"
+          max="15"
+          value="0"
+          class="slider"
+          id="strenght"
+          name="strenght"
+          oninput="this.nextElementSibling.value = strenght.value"
+        />
+        <output>0</output>
+      </div>
+      <div class="input-wrapper">
+        <label class="label" id="frequency">frequency</label>
+        <input
+          type="range"
+          step="0.25"
+          min="0"
+          max="15"
+          value="0"
+          class="slider"
+          id="frequency"
+          name="frequency"
+          oninput="this.nextElementSibling.value = frequency.value"
+        />
+        <output>0</output>
+      </div>
+      <div class="input-wrapper">
+        <label class="label" id="amplitude">amplitude</label>
+        <input
+          type="range"
+          step="0.25"
+          min="0"
+          max="15"
+          value="0"
+          class="slider"
+          id="amplitude"
+          name="amplitude"
+          oninput="this.nextElementSibling.value = amplitude.value"
+        />
+        <output>0</output>
+      </div>
+      <div class="input-wrapper">
+        <label class="label" id="intensity">intensity</label>
+        <input
+          type="range"
+          step="0.25"
+          min="0"
+          max="15"
+          value="0"
+          class="slider"
+          id="intensity"
+          name="intensity"
+          oninput="this.nextElementSibling.value = intensity.value"
+        />
+        <output>0</output>
+      </div>
+      <div class="input-wrapper">
+        <label class="label" id="segments">T. segments</label>
+        <input
+          type="range"
+          step="0.25"
+          min="1"
+          max="20"
+          value="20"
+          class="slider"
+          id="segments"
+          name="segments"
+          oninput="this.nextElementSibling.value = segments.value"
+        />
+        <output>20</output>
+      </div>
+
       <br /><br />
       <input type="submit" value="create" />
     </form>
@@ -33,6 +142,7 @@
         ).toString()
         return data
       }
+
       tokenData = genTokenData(1)
     </script>
   </body>

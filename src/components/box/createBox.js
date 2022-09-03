@@ -4,7 +4,12 @@ import createGradientMaterial from '../materials/createGradientMaterial'
 import createBgPlano from './createBgPlano'
 import createLambertFilmGrainMaterial from '../materials/createLambertFilmGrainMaterial'
 
-export default function createBox(palette, modifier, compo = 'gradient') {
+export default function createBox(
+  palette,
+  modifier,
+  compo = 'gradient',
+  settings
+) {
   const { bgPlano, planoPosition, x, y } = modifier
   if (bgPlano && compo === 'gradient') {
     return createBgPlano(palette, planoPosition)
@@ -12,7 +17,11 @@ export default function createBox(palette, modifier, compo = 'gradient') {
   const geometry = createBoxGeometry(modifier)
   const material =
     compo === 'grainy-box'
-      ? createLambertFilmGrainMaterial({ teapot: palette.teapot }, true)
+      ? createLambertFilmGrainMaterial(
+          { teapot: palette.teapot },
+          true,
+          settings
+        )
       : createGradientMaterial(palette)
   const box = new Mesh(geometry, material)
   return box

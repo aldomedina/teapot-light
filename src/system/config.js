@@ -2,16 +2,16 @@ import { Random } from '../Random'
 import blendingModes from './blendingModes'
 import palettes from './palettes'
 
-export default function config() {
+export default function config(settings) {
   const R = new Random()
   const { darkModes, lightModes, neutralModes, changeModes } = blendingModes
   const palette = R.random_choice(palettes)
-  console.log(palettes.indexOf(palette) + 1)
+
   // createCSV(palettes.map((colors) => colors.map((color) => color.toString(16))))
   const shadows = R.random_int(2, 6)
   const teapotSize = R.random_num(3.5, 4)
   const withDifference = R.random_bool(0.5)
-  const bgPlano = R.random_bool(0.2)
+  const bgPlano = R.random_bool(0.8)
   const planoPositions = ['tr', 'tl', 'br', 'bl', 'ctr']
   const blendsModes = []
 
@@ -45,13 +45,15 @@ export default function config() {
   const matrixside = R.random_choice([2, 3])
   let matrixModifiers = new Array(matrixside)
   let rowModifiers = new Array(matrixside)
+  let cellOpacity = new Array(Math.pow(matrixside, 2))
   for (let x = 0; x < matrixside; x++) {
     const withTranslation = R.random_bool(0.5)
-    rowModifiers[x] = `rotate(${R.random_num(2, 0.3)}deg)`
+    rowModifiers[x] = `rotate(${R.random_num(-1, 1)}deg)`
     for (let y = 0; y < matrixside; y++) {
       const i = x + y
-      const tx = withTranslation ? R.random_num(-20, 20) : R.random_num(5, 10)
+      const tx = withTranslation ? R.random_num(-8, -4) : R.random_num(4, 8)
       matrixModifiers[i] = `translateX(${tx}%)`
+      cellOpacity[i] = R.random_num(0.2, 0.45) * x
     }
   }
 
@@ -109,8 +111,10 @@ export default function config() {
       matrixside,
       matrixModifiers,
       rowModifiers,
-      boxMaterial: R.random_choice(['grainy-box', 'matrix']),
+      cellOpacity,
+      boxMaterial: 'matrix',
     },
+    settings,
   }
   console.log('config', config)
   return config

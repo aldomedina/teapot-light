@@ -14,6 +14,7 @@ export default function createGrainyBox(config) {
     lights_config,
     camera_config,
     shadows,
+    settings,
   } = config
   const canvas = document.querySelector('canvas.webgl')
   const teapotDOM = document.querySelector('div.teapots')
@@ -44,11 +45,19 @@ export default function createGrainyBox(config) {
     { ...palette, teapot: palette.teapot },
     shadows,
     0,
-    'grainy-box'
+    'grainy-box',
+    settings
   )
   const bgSphere = createBgSphere(palette)
   const spotlight = createLights(lights_config, 'grainy-box')
-  const box = createBox(palette, modifier, 'grainy-box')
+  const box = createBox(palette, modifier, 'grainy-box', {
+    speed: 0,
+    density: 0,
+    strenght: 0,
+    frequency: 0,
+    amplitude: 0,
+    intensity: 0,
+  })
   teapot.position.z = 10
   spotlight.target = teapot
   camera.lookAt(teapot.position)

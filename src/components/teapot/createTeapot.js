@@ -6,6 +6,7 @@ import {
   Color,
   MeshStandardMaterial,
 } from 'three'
+import createBasicFilmGrainMaterial from '../materials/createBasicFilmGrainMaterial'
 import createLambertFilmGrainMaterial from '../materials/createLambertFilmGrainMaterial'
 import createTeapotGeometry from './createTeapotGeometry'
 
@@ -14,7 +15,8 @@ export default function createTeapot(
   palette,
   shadows,
   modifier = 0,
-  compo
+  compo,
+  settings
 ) {
   const {
     size,
@@ -23,17 +25,15 @@ export default function createTeapot(
 
   const { mainRotationAxis, secondaryRotationAxis } = shadows
   const teapotSize = compo === 'grainy-box' ? 2 : compo === 'matrix' ? 2 : size
-  const geometry = createTeapotGeometry(teapotSize)
-  const material = createLambertFilmGrainMaterial(palette, true)
+  const geometry = createTeapotGeometry(settings.segments)
+  const material = createLambertFilmGrainMaterial(palette, true, settings)
   const outsideTeapot = new Mesh(geometry, material)
   outsideTeapot.castShadow = true
   outsideTeapot.receiveShadow = true
 
   const insideGeometry = geometry.clone()
 
-  const insideMaterial = new MeshBasicMaterial({
-    color: compo === 'grainy-box' ? palette.bg : palette.teapot_shadow,
-  })
+  const insideMaterial = createBasicFilmGrainMaterial(palette, compo, settings)
 
   // const insideMaterial = new MeshStandardMaterial({
   //   color: compo === 'grainy-box' ? palette.bg : palette.teapot_shadow,

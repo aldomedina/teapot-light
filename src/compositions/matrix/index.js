@@ -14,7 +14,14 @@ export default function createMatrix(config) {
     lights_config,
     camera_config,
     shadows,
-    matrix: { matrixside, matrixModifiers, boxMaterial, rowModifiers },
+    matrix: {
+      matrixside,
+      matrixModifiers,
+      boxMaterial,
+      rowModifiers,
+      cellOpacity,
+    },
+    settings,
   } = config
   const canvas = document.querySelector('canvas.webgl')
   const teapotDOM = document.querySelector('div.teapots')
@@ -66,7 +73,7 @@ export default function createMatrix(config) {
    * Renderer
    */
   const renderer = createRender(canvas, sideSize)
-  const teapot = createTeapot(teapot_config, palette, 0, 0, 'matrix')
+  const teapot = createTeapot(teapot_config, palette, 0, 0, 'matrix', settings)
   teapot.position.z = 4
   const bgSphere = createBgSphere(palette)
   const spotlight = createLights(lights_config)
@@ -98,6 +105,7 @@ export default function createMatrix(config) {
 
       domIMG.style.mixBlendMode = 'overlay'
       domIMG.style.transform = matrixModifiers[i]
+      domIMG.style.opacity = 1 - cellOpacity[i]
 
       rowDiv.appendChild(domIMG)
     }

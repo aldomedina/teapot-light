@@ -14,6 +14,7 @@ export default function createSingleOverlay(config) {
     lights_config,
     camera_config,
     shadows,
+    settings,
   } = config
   const canvas = document.querySelector('canvas.webgl')
   const teapotDOM = document.querySelector('div.teapots')
@@ -57,7 +58,14 @@ export default function createSingleOverlay(config) {
    */
   const renderer = createRender(canvas, sideSize)
 
-  const teapot = createTeapot(teapot_config, palette, shadows)
+  const teapot = createTeapot(
+    teapot_config,
+    palette,
+    shadows,
+    0,
+    undefined,
+    settings
+  )
   const bgSphere = createBgSphere(palette)
   const spotlight = createLights(lights_config)
   spotlight.target = teapot

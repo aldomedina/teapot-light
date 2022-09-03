@@ -13,6 +13,7 @@ export default function createMultipleOverlay(config) {
     lights_config,
     camera_config,
     shadows,
+    settings,
   } = config
   const canvas = document.querySelector('canvas.webgl')
   const teapotDOM = document.querySelector('div.teapots')
@@ -78,7 +79,8 @@ export default function createMultipleOverlay(config) {
       palette,
       shadows,
       shadowModifier,
-      shadowSecondaryModifier
+      shadowSecondaryModifier,
+      settings
     )
     shadowModifier += shadows.modifier
     shadowSecondaryModifier += shadows.secondaryModifier

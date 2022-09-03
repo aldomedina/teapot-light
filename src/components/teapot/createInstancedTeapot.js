@@ -16,6 +16,7 @@ export default function createInstancedTeapot(config, palette) {
   const {
     size,
     rotation: { x, y, z },
+    settings,
   } = config
 
   const geometry = createTeapotGeometry(size)

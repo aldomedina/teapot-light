@@ -5,6 +5,8 @@ body {
 body {
   margin: 0;
   padding: 0;
+  font-family: Helvetica, 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
+    sans-serif;
 }
 
 html,
@@ -44,16 +46,27 @@ body {
 
 .select-form {
   background: white;
-  padding: 1rem;
+  padding: 2rem 4rem;
   position: fixed;
   z-index: 5;
-  bottom: 0;
+  top: 0;
   right: 0;
   display: flex;
+  flex-direction: column;
   gap: 0.5rem;
   font-size: 0.5rem;
-  opacity: 0.3;
-}
-.select-form:hover {
   opacity: 1;
+  min-width: 200px;
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+}
+.title {
+  margin-top: 1rem;
 }
